@@ -72,7 +72,7 @@ elif [[ -d /lfs4/HFIP ]] ; then
   # We are on NOAA Jet
   export MetOnMachine=/misc/contrib/met/10.1.1
   export COMINvit=${COMINvit:-/mnt/lfs4/HFIP/hwrfv3/Jiayi.Peng/MetTCData/TCvital/syndat_tcvitals.${YYYY}}
-  export COMINtrack=${COMINtrack:-/mnt/lfs4/HFIP/hwrfv3/Jiayi.Peng/MetTCData/regionalTrack/tracks.atcfunix.${YY22}}
+  export COMINtrack=${COMINtrack:-/mnt/lfs4/HFIP/hwrfv3/Jiayi.Peng/MetTCData/globalTrack/tracks.atcfunix.${YY22}}
   export COMINbdeckNHC=${COMINbdeckNHC:-/mnt/lfs4/HFIP/hwrfv3/Jiayi.Peng/MetTCData/bdeck}
   export COMINbdeckJTWC=${COMINbdeckJTWC:-/mnt/lfs4/HFIP/hwrfv3/Jiayi.Peng/MetTCData/bdeck}
 elif [[ -d /scratch2 ]] ; then

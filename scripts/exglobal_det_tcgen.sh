@@ -1,7 +1,14 @@
 #!/bin/bash
 export PS4=' + exglobal_det_tcgen.sh line $LINENO: '
 
-export cartopyDataDir=${cartopyDataDir:-${FIXtc_verify}/cartopy}
+#export cartopyDataDir=${cartopyDataDir:-${FIXtc_verify}/cartopy}
+if [ ${machine} = "jet" ]; then
+#  export cartopyDataDir=${cartopyDataDir:-/mnt/lfs4/HFIP/hwrfv3/local/share/cartopy}
+  export cartopyDataDir=${cartopyDataDir:-/mnt/lfs4/HFIP/hwrfv3/Jiayi.Peng/cartopy}
+else
+  export cartopyDataDir=${cartopyDataDir:-${FIXtc_verify}/cartopy}
+fi
+
 export savePlots=${savePlots:-YES}
 export YEAR=${YYYY}
 export TCGENdays="TC Genesis(05/01/${YEAR}-11/30/${YEAR})"
@@ -100,7 +107,12 @@ cd ${OUTPUT}
 cp ${USHtc_verify}/hits_${basin}.py .
 grep "00    FYOY" tc_gen_${YEAR}_genmpr.txt > tc_gen_hits.txt
 export hitfile="tc_gen_hits.txt"
-python hits_${basin}.py
+if [ ${machine} = "jet" ]; then
+  ${PYTHONonJET} hits_${basin}.py
+else
+  python hits_${basin}.py
+fi
+
 convert TC_genesis.png tcgen_hits_${basin}_${model}.gif
 
 # Attach NOAA logo
@@ -121,7 +133,12 @@ cp ${USHtc_verify}/false_${basin}.py .
 grep "00    FYON" tc_gen_${YEAR}_genmpr.txt > tc_gen_false.txt
 grep "NA    FYON" tc_gen_${YEAR}_genmpr.txt >> tc_gen_false.txt
 export falsefile="tc_gen_false.txt"
-python false_${basin}.py
+if [ ${machine} = "jet" ]; then
+  ${PYTHONonJET} false_${basin}.py
+else
+  python false_${basin}.py
+fi
+
 convert TC_genesis.png tcgen_falseAlarm_${basin}_${model}.gif
 rm -f TC_genesis.png
 
@@ -138,7 +155,12 @@ nws_logo $TargetImageName
 error=$?
 
 cp ${USHtc_verify}/tcgen_space_${basin}.py .
-python tcgen_space_${basin}.py
+if [ ${machine} = "jet" ]; then
+  ${PYTHONonJET} tcgen_space_${basin}.py
+else
+  python tcgen_space_${basin}.py
+fi
+
 convert TC_genesis.png tcgen_HitFalse_${basin}_${model}.gif
 rm -f TC_genesis.png
 
