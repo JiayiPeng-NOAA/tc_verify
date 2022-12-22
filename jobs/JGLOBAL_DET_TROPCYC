@@ -77,11 +77,12 @@ elif [[ -d /lfs4/HFIP ]] ; then
   export COMINbdeckJTWC=${COMINbdeckJTWC:-/mnt/lfs4/HFIP/hwrfv3/Jiayi.Peng/MetTCData/bdeck}
 elif [[ -d /scratch2 ]] ; then
   # We are on NOAA Hera
-  export MetOnMachine=/contrib/met/10.1.2
-  export COMINvit=${COMINvit:-/your/TC/vitals/file}
-  export COMINtrack=${COMINtrack:-your/TC/track/file}
-  export COMINbdeckNHC=${COMINbdeckNHC:-/your/NHC/bdeck/data/dir}
-  export COMINbdeckJTWC=${COMINbdeckJTWC:-/your/JTWC/bdeck/data/dir}
+#  export MetOnMachine=/contrib/met/10.1.2
+  export MetOnMachine=/contrib/met/${met_ver}
+  export COMINvit=${COMINvit:-/scratch2/NCEPDEV/ensemble/Jiayi.Peng/noscrub/MetTCData/TCvital/syndat_tcvitals.${YYYY}}
+  export COMINtrack=${COMINtrack:-/scratch2/NCEPDEV/ensemble/Jiayi.Peng/noscrub/MetTCData/globalTrack/tracks.atcfunix.${YY22}}
+  export COMINbdeckNHC=${COMINbdeckNHC:-/scratch2/NCEPDEV/ensemble/Jiayi.Peng/noscrub/MetTCData/bdeck}
+  export COMINbdeckJTWC=${COMINbdeckJTWC:-/scratch2/NCEPDEV/ensemble/Jiayi.Peng/noscrub/MetTCData/bdeck}
 elif [[ -d /work ]] ; then
   # We are on MSU Orion
   export MetOnMachine=/apps/contrib/MET/10.1.1

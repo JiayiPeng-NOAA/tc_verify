@@ -5,6 +5,8 @@ export PS4=' + exglobal_det_tcgen.sh line $LINENO: '
 if [ ${machine} = "jet" ]; then
 #  export cartopyDataDir=${cartopyDataDir:-/mnt/lfs4/HFIP/hwrfv3/local/share/cartopy}
   export cartopyDataDir=${cartopyDataDir:-/mnt/lfs4/HFIP/hwrfv3/Jiayi.Peng/cartopy}
+elif [ ${machine} = "hera" ]; then
+  export cartopyDataDir=${cartopyDataDir:-/scratch2/NCEPDEV/ensemble/Jiayi.Peng/noscrub/cartopy}
 else
   export cartopyDataDir=${cartopyDataDir:-${FIXtc_verify}/cartopy}
 fi
@@ -109,6 +111,8 @@ grep "00    FYOY" tc_gen_${YEAR}_genmpr.txt > tc_gen_hits.txt
 export hitfile="tc_gen_hits.txt"
 if [ ${machine} = "jet" ]; then
   ${PYTHONonJET} hits_${basin}.py
+elif [ ${machine} = "hera" ]; then
+  ${PYTHONonHERA} hits_${basin}.py
 else
   python hits_${basin}.py
 fi
@@ -135,6 +139,8 @@ grep "NA    FYON" tc_gen_${YEAR}_genmpr.txt >> tc_gen_false.txt
 export falsefile="tc_gen_false.txt"
 if [ ${machine} = "jet" ]; then
   ${PYTHONonJET} false_${basin}.py
+elif [ ${machine} = "hera" ]; then
+  ${PYTHONonHERA} false_${basin}.py
 else
   python false_${basin}.py
 fi
@@ -157,6 +163,8 @@ error=$?
 cp ${USHtc_verify}/tcgen_space_${basin}.py .
 if [ ${machine} = "jet" ]; then
   ${PYTHONonJET} tcgen_space_${basin}.py
+elif [ ${machine} = "hera" ]; then
+  ${PYTHONonHERA} tcgen_space_${basin}.py
 else
   python tcgen_space_${basin}.py
 fi
@@ -208,7 +216,17 @@ grep "GENESIS_DEV" ${COMOUTroot}/stats/tc_gen_${YEAR}_ctc_${basin}_cmc.txt > dev
 export CTCfile01="dev_tc_gen_${YEAR}_ctc_${basin}_gfs.txt"
 export CTCfile02="dev_tc_gen_${YEAR}_ctc_${basin}_ecmwf.txt"
 export CTCfile03="dev_tc_gen_${YEAR}_ctc_${basin}_cmc.txt"
-python tcgen_performance_diagram.py
+#python tcgen_performance_diagram.py
+
+if [ ${machine} = "jet" ]; then
+  ${PYTHONonJET} tcgen_performance_diagram.py
+elif [ ${machine} = "hera" ]; then
+  export XDG_RUNTIME_DIR="/home/$USER"
+  ${PYTHONonHERA} tcgen_performance_diagram.py
+else
+  python tcgen_performance_diagram.py
+fi
+
 convert tcgen_performance_diagram.png tcgen_performance_diagram_${basin}.gif
 
 # Attach NOAA logo

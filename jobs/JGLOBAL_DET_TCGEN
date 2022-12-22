@@ -85,12 +85,14 @@ elif [[ -d /lfs4/HFIP ]] ; then
 elif [[ -d /scratch2 ]] ; then
   # We are on NOAA Hera
   export machine=hera
-  export MetOnMachine=/contrib/met/10.1.2
-  export COMINgenesis=${COMINgenesis:-/lfs/h2/emc/vpppg/noscrub/jiayi.peng/MetTCData/TCgen/genesisDATA}
-  export COMINadeckNHC=${COMINadeckNHC:-/lfs/h2/emc/vpppg/noscrub/jiayi.peng/MetTCData/TCgen/ABdeck}
-  export COMINbdeckNHC=${COMINbdeckNHC:-/lfs/h2/emc/vpppg/noscrub/jiayi.peng/MetTCData/TCgen/ABdeck}
-  export COMINadeckJTWC=${COMINadeckJTWC:-/lfs/h2/emc/vpppg/noscrub/jiayi.peng/MetTCData/TCgen/ABdeck}
-  export COMINbdeckJTWC=${COMINbdeckJTWC:-/lfs/h2/emc/vpppg/noscrub/jiayi.peng/MetTCData/TCgen/ABdeck}  
+  export PYTHONonHERA=/contrib/anaconda/anaconda3/latest/bin/python3
+#  export MetOnMachine=/contrib/met/10.1.2
+  export MetOnMachine=/contrib/met/${met_ver}
+  export COMINgenesis=${COMINgenesis:-/scratch2/NCEPDEV/ensemble/Jiayi.Peng/noscrub/MetTCData/TCgen/genesisDATA}
+  export COMINadeckNHC=${COMINadeckNHC:-/scratch2/NCEPDEV/ensemble/Jiayi.Peng/noscrub/MetTCData/TCgen/ABdeck}
+  export COMINbdeckNHC=${COMINbdeckNHC:-/scratch2/NCEPDEV/ensemble/Jiayi.Peng/noscrub/MetTCData/TCgen/ABdeck}
+  export COMINadeckJTWC=${COMINadeckJTWC:-/scratch2/NCEPDEV/ensemble/Jiayi.Peng/noscrub/MetTCData/TCgen/ABdeck}
+  export COMINbdeckJTWC=${COMINbdeckJTWC:-/scratch2/NCEPDEV/ensemble/Jiayi.Peng/noscrub/MetTCData/TCgen/ABdeck}  
 
 elif [[ -d /work ]] ; then
   # We are on MSU Orion

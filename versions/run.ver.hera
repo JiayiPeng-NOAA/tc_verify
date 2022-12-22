@@ -1,0 +1,10 @@
+export tc_verify_ver=1.0
+
+export intel_ver=2022.1.2
+export met_ver=10.1.2
+export metplus_ver=4.1.4
+export imagemagick_ver=7.0.8-53
+
+#export grib_util_ver=v1.0.1
+#export prod_util_ver=1.0.18
+#export prod_envir_ver=2.0.6

@@ -10,7 +10,9 @@
 
 #Import necessary modules
 import numpy as np
-import matplotlib as mpl
+import matplotlib
+matplotlib.use('agg')
+#import matplotlib as mpl
 import matplotlib.pyplot as plt
 import sys
 import subprocess
